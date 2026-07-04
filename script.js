@@ -141,10 +141,19 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function nextTestimonial() { goToTestimonial(tCurrent + 1); }
+  function prevTestimonial() { goToTestimonial(tCurrent - 1); }
 
   function startTestimonialAutoplay() {
     tTimer = setInterval(nextTestimonial, 4500);
   }
+  function stopTestimonialAutoplay() {
+    clearInterval(tTimer);
+  }
+
+  const testimonialNextBtn = document.getElementById('testimonialNext');
+  const testimonialPrevBtn = document.getElementById('testimonialPrev');
+  if (testimonialNextBtn) testimonialNextBtn.addEventListener('click', () => { nextTestimonial(); stopTestimonialAutoplay(); startTestimonialAutoplay(); });
+  if (testimonialPrevBtn) testimonialPrevBtn.addEventListener('click', () => { prevTestimonial(); stopTestimonialAutoplay(); startTestimonialAutoplay(); });
 
   if (testimonialCards.length > 1) startTestimonialAutoplay();
 
